@@ -8,27 +8,27 @@ package tiraharkka;
  *
  * @author hekarhu
  */
-public class Paketti {
-    int leveys = 0;
+public class PakettiKontti {
+      int leveys = 0;
     int korkeus = 0;
     int syvyys = 0;
     /**
-     *Konstruktori jolla luodaan paketti, kun ei ole tiedossa kuin korkeus ja leveys
+     *Konstruktori jolla luodaan kontti, kun ei ole tiedossa kuin korkeus ja leveys
      * @param leveys
      * @param korkeus
      */
-    public Paketti(int leveys, int korkeus){
+    public PakettiKontti(int leveys, int korkeus){
         this.leveys = leveys;
         this.korkeus = korkeus;
     }
     /**
      *
-     *Konstruktori jolla luodaan paketti, kun tiedossa sekä korkeus, leveys, että syvyys
+     *Konstruktori jolla luodaan kontti, kun tiedossa sekä korkeus, leveys,että syvyys
      * @param leveys
      * @param korkeus
      * @param syvyys
      */
-    public Paketti(int leveys, int korkeus, int syvyys){
+    public PakettiKontti(int leveys, int korkeus, int syvyys){
         this.leveys = leveys;
         this.korkeus = korkeus;
         this.syvyys = syvyys;
@@ -55,3 +55,5 @@ public class Paketti {
         return this.syvyys;
     }
 }
+
+

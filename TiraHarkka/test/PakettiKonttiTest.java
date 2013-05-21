@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tiraharkka.Paketti;
+import tiraharkka.PakettiKontti;
 
 /**
  *
@@ -37,21 +38,21 @@ public class PakettiKonttiTest {
     }
         @Test
     public void testaaKontinOikeaPalautus(){
-        Paketti paketti = new Paketti(3, 3);
+        PakettiKontti paketti = new PakettiKontti(3, 3);
         assertTrue(paketti.getKorkeus() == 3);
         assertTrue(paketti.getLeveys() == 3);
         
     }
     @Test
     public void testaaKontinnOikeaPalautus2(){
-        Paketti paketti = new Paketti(3, 3, 3);
+        PakettiKontti paketti = new PakettiKontti(3, 3, 3);
         assertTrue(paketti.getKorkeus() == 3);
         assertTrue(paketti.getLeveys() == 3);
         assertTrue(paketti.getSyvyys() == 3);
     }
     @Test
     public void testaaKontinOikeaPalautus3(){
-        Paketti paketti = new Paketti(3, 4, 5);
+        PakettiKontti paketti = new PakettiKontti(3, 4, 5);
         assertTrue(paketti.getKorkeus() == 4);
         assertTrue(paketti.getLeveys() == 3);
         assertTrue(paketti.getSyvyys() == 5);

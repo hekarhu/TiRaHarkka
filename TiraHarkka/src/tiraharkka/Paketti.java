@@ -4,11 +4,13 @@
  */
 package tiraharkka;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hekarhu
  */
-public class Paketti {
+public class Paketti implements Serializable{
     int leveys = 0;
     int korkeus = 0;
     int syvyys = 0;

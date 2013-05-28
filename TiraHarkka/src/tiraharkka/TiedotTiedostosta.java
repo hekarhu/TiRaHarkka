@@ -24,7 +24,7 @@ public class TiedotTiedostosta implements Serializable {
     /**
      * taulukko jossa on tieto laatikoista jolla ohjelmaa ajetaan
      */
-    private ArrayList<Paketti> paketit = new ArrayList<>();
+    public ArrayList<Paketti> paketit = new ArrayList<>();
     private final String pakettienTiedostoNimi = "paketit.bin";
 
     /**
@@ -81,5 +81,8 @@ public class TiedotTiedostosta implements Serializable {
         for (Paketti paketti : paketit) {
             System.out.println("leveys: " + paketti.getLeveys() + ", korkeus: " + paketti.getKorkeus());
         }
+    }
+    ArrayList getLista(){
+        return paketit;
     }
 }

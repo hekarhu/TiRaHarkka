@@ -11,6 +11,21 @@ Käytetty aika noin 1,5h
 
 Viikko3
 Viikko aloitettu lisäämällä ohjelmistoon luokka joka pitää tiedostossa tietoa
-ohjelmassa käytettävistä "testi"paketeista.
+ohjelmassa käytettävistä "testi"paketeista. Korjattu myös viime viikon 
+virheitä testiluokissa. Lähdetty ratkaisemaan itse ongelmaa jossa paketteja 
+lisätään laatikkoon. Ensin yritän saada toimimaan kaksiulotteisena tämän siten,
+että lisätään neliön kokoisia laatikoita, jotka ovat kaikki saman kokoisia. 
+Olen aikaisemmin koodannut erään ohjelman jossa piti tarkistaa tila taulukosta
+käymällä se läpi eri suuntiin, joten päätin hyödyntää sitä myös tässä.
+Ongelmaksi tuli lainatun koodin saaminen toimimaan tässä työssä. Työ jäi
+kesken tällä viikolla, en pushaa githubiin rikkinäistä koodia. Joten näyttää
+vailinaiselta työ, näin ei kuitenkaa ole. Myös testit ovat siksi perässä.
+Käytetty aika noin 10h
+
+Viikko4
+Aloitin työn tänään tiistaina. Jatkoin viimeviikolla ilmenneesta ongelmasta
+Nyt se on korjattu, eli ohjelmassa on siis toimiva ohjelma joka osaa sijoittaa
+samankokoiset neliöt 2-ulotteiseen laatikkoon.
+Käytetty aika noin 5h
 
 

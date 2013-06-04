@@ -28,7 +28,8 @@ public class TiedotTiedostosta implements Serializable {
     private final String pakettienTiedostoNimi = "paketit.bin";
 
     /**
-     *ladataan paketit tiedostosta
+     * ladataan paketit tiedostosta
+     *
      * @throws ClassNotFoundException
      * @throws FileNotFoundException
      * @throws IOException
@@ -46,43 +47,52 @@ public class TiedotTiedostosta implements Serializable {
             }
         }
     }
-/**
- * Tallennetetaan lista paketeista tiedostoon
- * @throws IOException 
- */
+
+    /**
+     * Tallennetetaan lista paketeista tiedostoon
+     *
+     * @throws IOException
+     */
     void lopetusToimenpiteet() throws IOException {
         File paketitTiedosto = new File(pakettienTiedostoNimi);
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(paketitTiedosto))) {
             oos.writeObject(paketit);
         }
     }
-/**
- * lisää halutun määrän paketteja listalle
- */
+
+    /**
+     * lisää halutun määrän paketteja listalle
+     */
     void lisaaPaketti() {
         int leveys;
         int korkeus;
+        int syvyys;
         Scanner lukija = new Scanner(System.in);
         System.out.print("anna leveys");
         leveys = lukija.nextInt();
         while (leveys != 0) {
             System.out.print("anna korkeus");
             korkeus = lukija.nextInt();
-            paketit.add(new Paketti(leveys, korkeus));
+            System.out.print("anna syvyys");
+            syvyys = lukija.nextInt();
+            paketit.add(new Paketti(leveys, korkeus,syvyys));
             System.out.print("anna leveys");
             leveys = lukija.nextInt();
 
+
         }
     }
-/**
- * tulostaa esityksen paketeista jotka ovat listalla
- */
+
+    /**
+     * tulostaa esityksen paketeista jotka ovat listalla
+     */
     void tulostaListaPaketeista() {
         for (Paketti paketti : paketit) {
-            System.out.println("leveys: " + paketti.getLeveys() + ", korkeus: " + paketti.getKorkeus());
+            System.out.println("leveys: " + paketti.getLeveys() + ", korkeus: " + paketti.getKorkeus()+", syvyys: "+paketti.getSyvyys());
         }
     }
-    ArrayList getLista(){
+
+    ArrayList getLista() {
         return paketit;
     }
 }

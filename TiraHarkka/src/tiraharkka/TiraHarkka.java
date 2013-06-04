@@ -16,19 +16,18 @@ public class TiraHarkka {
     /**
      * @param args the command line arguments
      * @throws ClassNotFoundException
-     * @throws FileNotFoundException 
-     * @throws IOException  
+     * @throws FileNotFoundException
+     * @throws IOException
      */
     public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException {
         TiedotTiedostosta tiedot = new TiedotTiedostosta();
 //        tiedot.lisaaPaketti();
         PaketitLaatikkoon sovitus = new PaketitLaatikkoon(tiedot);
         tiedot.tulostaListaPaketeista();
-//        sovitus.piirraLaatikko();
         sovitus.sovitetaanLaatikkoon();
-        sovitus.piirraLaatikko();
-//        tiedot.tulostaListaPaketeista();
-        
+        sovitus.piirraLaatikkoPaalta();
+        sovitus.piirraLaatikkoSivulta();
+
         tiedot.lopetusToimenpiteet();
     }
 }

@@ -64,6 +64,7 @@ public class TiedotTiedostosta implements Serializable {
      * lisää halutun määrän paketteja listalle
      */
     void lisaaPaketti() {
+        int merkinIndeksi = 0;
         int leveys;
         int korkeus;
         int syvyys;
@@ -75,9 +76,10 @@ public class TiedotTiedostosta implements Serializable {
             korkeus = lukija.nextInt();
             System.out.print("anna syvyys");
             syvyys = lukija.nextInt();
-            paketit.add(new Paketti(leveys, korkeus,syvyys));
+            paketit.add(new Paketti(leveys, korkeus,syvyys,merkinIndeksi));
             System.out.print("anna leveys");
             leveys = lukija.nextInt();
+            merkinIndeksi++;
 
 
         }

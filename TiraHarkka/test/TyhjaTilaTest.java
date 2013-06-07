@@ -40,7 +40,7 @@ public class TyhjaTilaTest {
         TyhjaTila tila = new TyhjaTila();
         assertTrue(tila.getStatus() == ' ');
         tila.varaaTila();
-        assertTrue(tila.getStatus() == 'x');
+        assertTrue(tila.getStatus()  == 'x');
         assertFalse(tila.varaaTila());
     }
 }

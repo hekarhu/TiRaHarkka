@@ -27,7 +27,7 @@ public class TiraHarkka {
         sovitus.sovitetaanLaatikkoon();
         sovitus.piirraLaatikkoPaalta();
         sovitus.piirraLaatikkoSivulta();
-
+        tiedot.tulostaListaPaketeista();
         tiedot.lopetusToimenpiteet();
     }
 }

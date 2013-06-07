@@ -12,13 +12,13 @@ public class TyhjaTila {
 
     int leveys = 5;
     int korkeus = 5;
-    private static final char risti = 'x';
     private static final char nolla = 'o';
     private char varattu = nolla;
+    boolean status = true;
 
     private boolean voikoVarata() {
         if (varattu == nolla) {
-            this.varattu = risti;
+            this.status = false;
             return true;
         } else {
             return false;
@@ -29,7 +29,10 @@ public class TyhjaTila {
         return voikoVarata();
     }
 
-    public char getStatus() {
+    public boolean getStatus() {
+        return this.status;
+    }
+    public char getMerkki(){
         return this.varattu;
     }
 }

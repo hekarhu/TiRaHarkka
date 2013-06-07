@@ -11,17 +11,21 @@ import java.io.Serializable;
  * @author hekarhu
  */
 public class Paketti implements Serializable{
+    char[] aakkosto = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','Z'};
     int leveys = 0;
     int korkeus = 0;
     int syvyys = 0;
+    char merkki;
     /**
      *Konstruktori jolla luodaan paketti, kun ei ole tiedossa kuin korkeus ja leveys
      * @param leveys
      * @param korkeus
      */
-    public Paketti(int leveys, int korkeus){
+    public Paketti(int leveys, int korkeus,int indeksi){
+ 
         this.leveys = leveys;
         this.korkeus = korkeus;
+        this.merkki = aakkosto[indeksi];
     }
     /**
      *
@@ -30,10 +34,11 @@ public class Paketti implements Serializable{
      * @param korkeus
      * @param syvyys
      */
-    public Paketti(int leveys, int korkeus, int syvyys){
+    public Paketti(int leveys, int korkeus, int syvyys,int indeksi){
         this.leveys = leveys;
         this.korkeus = korkeus;
         this.syvyys = syvyys;
+        this.merkki = aakkosto[indeksi];
     }
     /**
      *
@@ -55,5 +60,8 @@ public class Paketti implements Serializable{
      */
     public int getSyvyys(){
         return this.syvyys;
+    }
+    public char getAakkonen(){
+        return this.merkki;
     }
 }

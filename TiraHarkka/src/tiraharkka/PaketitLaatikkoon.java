@@ -20,7 +20,7 @@ class PaketitLaatikkoon {
     ArrayList<Paketti> lista;
     final int paketinkoko = 5;
     final int laatikonkoko = 20;
-    TyhjaTila laatikko[][][] = new TyhjaTila[laatikonkoko][laatikonkoko][laatikonkoko];
+    char laatikko[][][] = new char[laatikonkoko][laatikonkoko][laatikonkoko];
 
     public PaketitLaatikkoon(TiedotTiedostosta tiedot) {
         this.tiedot = tiedot;
@@ -32,7 +32,7 @@ class PaketitLaatikkoon {
         System.out.println("laatikko päältä katsottuna");
         for (int i = 0; i < laatikonkoko; i++) {
             for (int j = 0; j < laatikonkoko; j++) {
-                System.out.print(this.laatikko[i][j][0].getStatus());
+                System.out.print(this.laatikko[i][j][0]);
             }
             System.out.println("");
         }
@@ -42,8 +42,8 @@ class PaketitLaatikkoon {
         System.out.println("laatikko sivulta katsottuna:");
         for (int i = 0; i < laatikonkoko; i++) {
 
-                for (int k = 0; k < laatikonkoko; k++) {
-                    System.out.print(this.laatikko[i][0][k].getStatus());
+                for (int k = 0; k < laatikonkoko; k++) {                    
+                        System.out.print(this.laatikko[i][0][k]);
                 }
             
             System.out.println("");
@@ -54,7 +54,7 @@ class PaketitLaatikkoon {
         for (int i = 0; i < laatikonkoko; i++) {
             for (int j = 0; j < laatikonkoko; j++) {
                 for (int k = 0; k < laatikonkoko; k++) {
-                    this.laatikko[i][j][k] = new TyhjaTila();
+                    this.laatikko[i][j][k] = 'o';
                 }
 
             }
@@ -63,28 +63,21 @@ class PaketitLaatikkoon {
 
     public void sovitetaanLaatikkoon() {
 
-        int vaadittuLeveys;
-        int vaadittuKorkeus;
-        int vaadittuSyvyys;
         int moneskoLaatikko = 0;
         for (Paketti paketti : lista) {
-            System.out.println("moneskolaatikko " + moneskoLaatikko);
             moneskoLaatikko++;
-            vaadittuLeveys = paketti.getLeveys();
-            vaadittuKorkeus = paketti.getKorkeus();
-            vaadittuSyvyys = paketti.getSyvyys();
-            System.out.println("leveys " + vaadittuLeveys + " korkeus " + vaadittuKorkeus);
-            sovitus(vaadittuKorkeus, vaadittuLeveys, vaadittuSyvyys);
+            System.out.println("moneskolaatikko " + moneskoLaatikko);
+            sovitus(paketti);
 
         }
     }
 
-    private void sovitus(int vaadittuKorkeus, int vaadittuLeveys,int vaadittuSyvyys) {
+    private void sovitus(Paketti paketti) {
         for (int i = 0; i < laatikonkoko; i++) {
             for (int j = 0; j < laatikonkoko; j++) {
                 for (int k = 0; k < laatikonkoko; k++) {
-                    if (this.laatikko[i][j][k].getStatus() == 'o' && tarkistaTilanne(this.laatikko, i, j, k)) {
-                        if (sijoitaLaatikkoon(this.laatikko, i, j, k, vaadittuKorkeus, vaadittuLeveys, vaadittuSyvyys)) {
+                    if (this.laatikko[i][j][k] == 'o' && tarkistaTilanne(this.laatikko, i, j, k)) {
+                        if (sijoitaLaatikkoon(this.laatikko, i, j, k,paketti)) {
                             return;
                         }
                     }
@@ -93,11 +86,11 @@ class PaketitLaatikkoon {
         }
     }
 
-    private boolean sijoitaLaatikkoon(TyhjaTila[][][] laatikko, int i, int j, int s, int vaadittuKorkeus, int vaadittuLeveys,int vaadittuSyvyys) {
-        for (int k = 0; k < vaadittuKorkeus; k++) {
-            for (int l = 0; l < vaadittuLeveys; l++) {
-                for (int n = 0; n < vaadittuSyvyys; n++) {
-                    laatikko[i][j][s].varaaTila();
+    private boolean sijoitaLaatikkoon(char[][][] laatikko1, int i, int j, int s, Paketti paketti) {
+        for (int k = 0; k < paketti.getKorkeus(); k++) {
+            for (int l = 0; l < paketti.getLeveys(); l++) {
+                for (int n = 0; n < paketti.getSyvyys(); n++) {
+                    laatikko[i][j][s] = paketti.getAakkonen();
                     s++;
                 }
                 j++;
@@ -109,7 +102,7 @@ class PaketitLaatikkoon {
         return true;
     }
 
-    public boolean tarkistaTilanne(TyhjaTila[][][] laatikko, int vaakaRivi, int sarake, int syvyys) {
+    public boolean tarkistaTilanne(char[][][] laatikko, int vaakaRivi, int sarake, int syvyys) {
         for (Suunta suunta : Suunta.values()) {
             if (tarkistaNaapurit(1, vaakaRivi, sarake, syvyys, suunta)) {
                 return true;
@@ -147,7 +140,7 @@ class PaketitLaatikkoon {
     }
 
     private boolean onkoSamatNaapurit(int vaakaRivi, int sarake, int syvyys, int seuraavaVaakarivi, int seuraavaSarake, int seuraavaSyvyys) {
-        return (laatikko[vaakaRivi][sarake][syvyys].getStatus() == laatikko[seuraavaVaakarivi][seuraavaSarake][syvyys].getStatus());
+        return (laatikko[vaakaRivi][sarake][syvyys] == laatikko[seuraavaVaakarivi][seuraavaSarake][syvyys]);
     }
 
     private static int laskeVaakarivi(Suunta suunta, int vaakaRivi) {

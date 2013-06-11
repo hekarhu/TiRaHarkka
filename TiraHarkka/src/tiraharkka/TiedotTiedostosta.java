@@ -13,6 +13,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -76,25 +79,47 @@ public class TiedotTiedostosta implements Serializable {
             korkeus = lukija.nextInt();
             System.out.print("anna syvyys");
             syvyys = lukija.nextInt();
-            paketit.add(new Paketti(leveys, korkeus,syvyys,merkinIndeksi));
+            this.paketit.add(new Paketti(leveys, korkeus,syvyys,merkinIndeksi));
             System.out.print("anna leveys");
             leveys = lukija.nextInt();
             merkinIndeksi++;
-
-
         }
+        paketitKokoJarjestykseen(this.paketit);
+        
     }
 
     /**
      * tulostaa esityksen paketeista jotka ovat listalla
      */
     void tulostaListaPaketeista() {
-        for (Paketti paketti : paketit) {
-            System.out.println("leveys: " + paketti.getLeveys() + ", korkeus: " + paketti.getKorkeus()+", syvyys: "+paketti.getSyvyys());
+        for (Paketti paketti : this.paketit) {
+            System.out.println("leveys: " + paketti.getLeveys() + ", korkeus: " + paketti.getKorkeus()+", syvyys: "+paketti.getSyvyys()+"tilavuus: "+paketti.getTilavuus());
         }
     }
 
     ArrayList getLista() {
+        return paketit;
+    }
+    private ArrayList paketitKokoJarjestykseen(ArrayList<Paketti> paketit) {
+        Paketti[] paketitkokojarjestyksessa = new Paketti[paketit.size()];
+        int foreachapu = 0;
+        for (Paketti paketti : paketit) {
+            System.out.println(paketti.getTilavuus()+", ");
+            paketitkokojarjestyksessa[foreachapu] = paketti;
+            foreachapu++;
+        }
+        paketit.clear();
+        for (int i = 1; i < paketitkokojarjestyksessa.length; ++i) {
+            Paketti apu = paketitkokojarjestyksessa[i];
+            int j = i;
+            while (j > 0 && paketitkokojarjestyksessa[j - 1].getTilavuus() > apu.getTilavuus()) {
+                paketitkokojarjestyksessa[j] = paketitkokojarjestyksessa[j - 1];
+                --j;
+            }
+            paketitkokojarjestyksessa[j] = apu;
+        }
+        paketit.addAll(Arrays.asList(paketitkokojarjestyksessa));
+        Collections.reverse(paketit);
         return paketit;
     }
 }

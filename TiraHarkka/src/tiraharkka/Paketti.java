@@ -11,21 +11,23 @@ import java.io.Serializable;
  * @author hekarhu
  */
 public class Paketti implements Serializable{
-    char[] aakkosto = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','Z'};
-    int leveys = 0;
-    int korkeus = 0;
-    int syvyys = 0;
-    char merkki;
+    private char[] aakkosto = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','Z'};
+    private int leveys = 0;
+    private int korkeus = 0;
+    private int syvyys = 0;
+    private char merkki;
+    private int tilavuus;
     /**
      *Konstruktori jolla luodaan paketti, kun ei ole tiedossa kuin korkeus ja leveys
      * @param leveys
      * @param korkeus
      */
     public Paketti(int leveys, int korkeus,int indeksi){
- 
         this.leveys = leveys;
         this.korkeus = korkeus;
         this.merkki = aakkosto[indeksi];
+        this.tilavuus = (this.korkeus*this.leveys*this.syvyys);
+        System.out.println(this.tilavuus);
     }
     /**
      *
@@ -39,6 +41,8 @@ public class Paketti implements Serializable{
         this.korkeus = korkeus;
         this.syvyys = syvyys;
         this.merkki = aakkosto[indeksi];
+        this.tilavuus = (this.korkeus*this.leveys*this.syvyys);
+        System.out.println(this.tilavuus);
     }
     /**
      *
@@ -63,5 +67,8 @@ public class Paketti implements Serializable{
     }
     public char getAakkonen(){
         return this.merkki;
+    }
+    public int getTilavuus(){
+        return this.tilavuus;
     }
 }

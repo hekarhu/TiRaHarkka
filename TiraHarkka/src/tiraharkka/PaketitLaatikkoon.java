@@ -5,7 +5,6 @@
 package tiraharkka;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -18,10 +17,11 @@ class PaketitLaatikkoon {
     private final int paketinkoko = 5;
     private final int laatikonkoko = 20;
     private char laatikko[][][] = new char[laatikonkoko][laatikonkoko][laatikonkoko];
+    private final PakettiKontti kontti;
 
     public enum Mitenpain {
 
-        EIKAANNETTY, KAANNETTYXAKSELINSUUNTAISESTIKERRAN, KAANNETTYXAKSELINSUUNTAISESTIKAHDESTI, KAANNETTYYAKSELINSUUNTAISESTIKERRAN, KAANNETTYYAKSELINSUUNTAISESTIKAHDESTI
+        EIKAANNETA, KAANNETAANKERRAN, KAANNETAANTOISENKERRAN, KAANNETAANKOLMANNENKERRAN, KAANNETAANNELJANNENKERRAN
     }
 
     public enum Suunta {
@@ -29,18 +29,18 @@ class PaketitLaatikkoon {
         VAAKA, PYSTY, KOHTISUORAAN
     }
 
-    public PaketitLaatikkoon(TiedotTiedostosta tiedot) {
+    public PaketitLaatikkoon(TiedotTiedostosta tiedot, PakettiKontti kontti) {
+        this.kontti = kontti;
         this.tiedot = tiedot;
         this.lista = tiedot.getLista();
         asetaLaatikkoTyhjaksi();
-        
+
     }
 
-
     private void asetaLaatikkoTyhjaksi() {
-        for (int i = 0; i < laatikonkoko; i++) {
-            for (int j = 0; j < laatikonkoko; j++) {
-                for (int k = 0; k < laatikonkoko; k++) {
+        for (int i = 0; i < this.kontti.getKorkeus(); i++) {
+            for (int j = 0; j < this.kontti.getLeveys(); j++) {
+                for (int k = 0; k < this.kontti.getSyvyys(); k++) {
                     this.laatikko[i][j][k] = 'o';
                 }
 
@@ -49,9 +49,7 @@ class PaketitLaatikkoon {
     }
 
     public void sovitetaanLaatikkoon() {
-
         int moneskoLaatikko = 0;
-
         for (Paketti paketti : this.lista) {
             moneskoLaatikko++;
             System.out.println("moneskolaatikko " + moneskoLaatikko);
@@ -162,12 +160,44 @@ class PaketitLaatikkoon {
             case PYSTY:
             default:
                 return syvyys;
-
         }
     }
-    // itse järjestämistä koskevat metodit ovat tämä yläpuolella
-    
-    
+    /**
+     * Metodi palauttaa sovitetttavan paketin eri asennossa kutsujalleen
+     * @param mitenpain
+     * @param paketti
+     * @return 
+     */
+
+    private Paketti laatikonKaantaja(Mitenpain mitenpain, Paketti paketti) {
+        int apu;
+        switch (mitenpain) {
+            case EIKAANNETA:
+                return paketti;
+            case KAANNETAANKERRAN://käännetään paketti X-akselin ympäri
+                apu = paketti.getKorkeus();
+                paketti.setKorkeus(paketti.getSyvyys());
+                paketti.setSyvyys(apu);
+                return paketti;
+            case KAANNETAANTOISENKERRAN://käännetään x-akselin ympäri käännetty y-akselin ympäri
+                apu = paketti.getLeveys();
+                paketti.setLeveys(paketti.getSyvyys());
+                paketti.setSyvyys(apu);
+                return paketti;
+            case KAANNETAANKOLMANNENKERRAN://käännetään x- ja y-akselin ympäri käännetty x-akselin ympäri
+                apu = paketti.getKorkeus();
+                paketti.setKorkeus(paketti.getSyvyys());
+                paketti.setSyvyys(apu);
+                return paketti;
+            case KAANNETAANNELJANNENKERRAN://käännetään kaksi kertaa x-ja kerran y-akselin ympäri käännetty y-akselin ympäri
+                apu = paketti.getLeveys();
+                paketti.setLeveys(paketti.getSyvyys());
+                paketti.setSyvyys(apu);
+                return paketti;
+            default:
+                return paketti;
+        }
+    }
 
     public void piirraLaatikkoPaalta() {
         System.out.println("laatikko päältä katsottuna");

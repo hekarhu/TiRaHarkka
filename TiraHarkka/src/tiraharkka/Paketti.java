@@ -27,7 +27,6 @@ public class Paketti implements Serializable{
         this.korkeus = korkeus;
         this.merkki = aakkosto[indeksi];
         this.tilavuus = (this.korkeus*this.leveys*this.syvyys);
-        System.out.println(this.tilavuus);
     }
     /**
      *
@@ -42,7 +41,6 @@ public class Paketti implements Serializable{
         this.syvyys = syvyys;
         this.merkki = aakkosto[indeksi];
         this.tilavuus = (this.korkeus*this.leveys*this.syvyys);
-        System.out.println(this.tilavuus);
     }
     /**
      *
@@ -71,4 +69,15 @@ public class Paketti implements Serializable{
     public int getTilavuus(){
         return this.tilavuus;
     }
+
+    void setKorkeus(int uusiKorkeus) {
+        this.korkeus=uusiKorkeus;
+    }
+    void setLeveys(int uusiLeveys){
+        this.leveys = uusiLeveys;
+    }
+    void setSyvyys(int uusiSyvyys){
+        this.syvyys = uusiSyvyys;
+    }
+
 }

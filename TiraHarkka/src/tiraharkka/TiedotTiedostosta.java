@@ -14,7 +14,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -67,6 +66,7 @@ public class TiedotTiedostosta implements Serializable {
      * lisää halutun määrän paketteja listalle
      */
     void lisaaPaketti() {
+        System.out.println("Aluksi lisätään listaan halutut paketit, jos et halua lisätä, paina vain nolla");
         int merkinIndeksi = 0;
         int leveys;
         int korkeus;
@@ -80,7 +80,7 @@ public class TiedotTiedostosta implements Serializable {
             System.out.print("anna syvyys");
             syvyys = lukija.nextInt();
             this.paketit.add(new Paketti(leveys, korkeus,syvyys,merkinIndeksi));
-            System.out.print("anna leveys");
+            System.out.print("anna leveys, tai valitse nolla lopettaaksesi lisäyksen");
             leveys = lukija.nextInt();
             merkinIndeksi++;
         }
@@ -92,6 +92,7 @@ public class TiedotTiedostosta implements Serializable {
      * tulostaa esityksen paketeista jotka ovat listalla
      */
     void tulostaListaPaketeista() {
+        System.out.println("seuraavat paketit ollaan lisäämässä:");
         for (Paketti paketti : this.paketit) {
             System.out.println("leveys: " + paketti.getLeveys() + ", korkeus: " + paketti.getKorkeus()+", syvyys: "+paketti.getSyvyys()+"tilavuus: "+paketti.getTilavuus());
         }
@@ -104,7 +105,6 @@ public class TiedotTiedostosta implements Serializable {
         Paketti[] paketitkokojarjestyksessa = new Paketti[paketit.size()];
         int foreachapu = 0;
         for (Paketti paketti : paketit) {
-            System.out.println(paketti.getTilavuus()+", ");
             paketitkokojarjestyksessa[foreachapu] = paketti;
             foreachapu++;
         }
